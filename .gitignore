@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Firebase config
 firebase.js
+
+# Firebase hosting cache
+/.firebase
