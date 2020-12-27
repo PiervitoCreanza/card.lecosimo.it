@@ -1,49 +1,59 @@
-import { createRouter, createWebHistory } from 'vue-router'
-const Home = () => import ('../views/Home.vue')
-const Login = () => import('../views/Login.vue')
-const UserHome = () => import('../views/UserHome.vue')
-const ViewCard = () => import('../views/ViewCard.vue')
+import { createRouter, createWebHistory } from "vue-router";
+const Home = () => import("../views/Home.vue");
+const Login = () => import("../views/Login.vue");
+const UserHome = () => import("../views/UserHome.vue");
+const ViewCard = () => import("../views/ViewCard.vue");
+const Esercenti = () => import("@/views/Esercenti.vue");
+const HomeEsercenti = () => import("@/views/HomeEsercenti.vue");
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: "/",
+    name: "Home",
     component: Home,
     meta: {
-        title: "Home"
-    }
+      title: "Home",
+    },
   },
   {
-    path: '/user',
-    name: 'User',
+    path: "/user",
+    name: "User",
     component: UserHome,
     meta: {
-        requiresAuth: true,
-        title: "Dashboard"
-    }
+      requiresAuth: true,
+      title: "Dashboard",
+    },
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
     meta: {
-    title: "Accedi"
-    }
+      title: "Accedi",
+    },
   },
   {
-      path: '/viewcard/:id',
-      name: 'Visualizza Carta',
-      component: ViewCard,
-      meta: {
-        requiresAuth: true,
-        title: 'Visualizza Carta'
-    }
-  }
-]
+    path: "/viewcard/:id",
+    name: "Visualizza Carta",
+    component: ViewCard,
+    meta: {
+      /*requiresAuth: true,*/
+      title: "Visualizza Carta",
+    },
+  },
+  {
+    path: "/esercenti",
+    component: Esercenti,
+  },
+  {
+    path: "/home-esercenti",
+    component: HomeEsercenti,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
