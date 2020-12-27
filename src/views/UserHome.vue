@@ -14,30 +14,7 @@
           </button>
         </div>
         <div v-else class="col-12 col-lg-7">
-          <div class="card-container mx-auto">
-            <div class="card text-left">
-              <h1
-                class="m-0 card-h1 display-4"
-                style="margin-top: -10px !important;"
-              >
-                De Giorgi's
-              </h1>
-              <h1 class="m-0 card-h1 display-4">Card</h1>
-              <div class="mt-3" style="position: absolute; bottom: 10px;">
-                <code class="card-code">{{ this.uid }}</code>
-                <div class="d-flex mt-2 ml-5">
-                  <div class="mr-2 my-auto">
-                    <p class="card-code card-small-code m-0">VALIDA</p>
-                    <p class="card-code card-small-code m-0">FINO A</p>
-                  </div>
-                  <p class="card-code my-auto m-0">09/21</p>
-                </div>
-                <p class="card-code mt-2" style="color: white;">
-                  {{ this.displayName }}
-                </p>
-              </div>
-            </div>
-          </div>
+          <theCard :cardId="uid" :fullName="displayName" />
           <button
             type="submit"
             @click="toggleQR"
@@ -63,11 +40,13 @@
 <script>
 import { auth } from "../assets/js/firebase";
 import VueQrcode from "vue-qrcode";
+import theCard from "@/components/TheCard.vue";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        this.url = `${window.location.origin}/viewcard/${user.uid}`;
+        //this.url = `${window.location.origin}/viewcard/${user.uid}`;
+        this.url = user.uid;
         this.displayName = user.displayName;
         this.uid = user.uid.match(/.{1,4}/g).join(" ");
       }
@@ -88,6 +67,7 @@ export default {
   },
   components: {
     VueQrcode,
+    theCard,
   },
 };
 </script>
