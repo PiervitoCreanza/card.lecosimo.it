@@ -54,7 +54,7 @@ label {
         background-size: 380px;
     }
     .img-home-card {
-        width: 120vw;
+        /*width: 120vw;*/
         margin-left: -12vw;
     }
 }
@@ -136,7 +136,7 @@ label {
     background-color: $background;
     border-radius: .75rem;
     padding: 2rem;
-    background-image: url('../img/card/card-illustration.svg');
+    background-image: url('../img/card/card-illustration-lc.svg');
     background-repeat: no-repeat;
     background-position: right;
     box-shadow: 0 0 40px 5px rgba(255,255,255, 0.05);
