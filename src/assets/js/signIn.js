@@ -1,5 +1,5 @@
 import { firebase /*db Decomment after March 2021*/ } from "./firebase";
-import router from "../../router";
+import router from "@/router";
 
 /* Decomment after March 2021
 export const postSignUpScripts = (user) => {
