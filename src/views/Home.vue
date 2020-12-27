@@ -1,33 +1,12 @@
 <template>
-  <section class="scene bg-home">
+  <section class="scene bg-home mt-5 mt-md-0">
     <div class="container my-auto align-items-center align-middle">
       <div class="row">
-        <div class="col-12 col-lg-7 order-lg-2">
+        <div class="col-12 col-lg-6 my-lg-auto order-lg-2">
           <!-- Image -->
-          <div class="img-home-card card-container mx-auto mt-5">
-            <div class="card text-left">
-              <h1
-                class="m-0 card-h1 display-4"
-                style="margin-top: -10px !important;"
-              >
-                De Giorgi's
-              </h1>
-              <h1 class="m-0 card-h1 display-4">Card</h1>
-              <div class="mt-3" style="position: absolute; bottom: 10px;">
-                <code class="card-code">8294 8173 6767 5600 3634</code>
-                <div class="d-flex mt-2 ml-5">
-                  <div class="mr-2 my-auto">
-                    <p class="card-code card-small-code m-0">VALIDA</p>
-                    <p class="card-code card-small-code m-0">FINO A</p>
-                  </div>
-                  <p class="card-code my-auto m-0">09/21</p>
-                </div>
-                <p class="card-code mt-2" style="color: white;">Mario Rossi</p>
-              </div>
-            </div>
-          </div>
+          <theCard />
         </div>
-        <div class="col-12 col-lg-5 my-lg-auto mt-5">
+        <div class="col-12 col-lg-6 my-lg-auto mt-5">
           <!-- Heading -->
           <h2 class="text-uppercase">De Giorgi's Card</h2>
           <h1 class="display-3">Accedi a un mondo di vantaggi.</h1>
@@ -38,9 +17,12 @@
           >
         </div>
       </div>
-      <div class="row mt-5">
-        <h5>Accolta nei migliori negozi</h5>
-        <p>Rooster - Martinucci - Baldieri</p>
+      <div class="mt-5" style="margin-top: 7rem !important">
+        <h5>Resa possibile grazie a</h5>
+        <img src="@/assets/img/sponsors@2x.png" height="100" />
+        <p class="mt-2">
+          <i>Rooster - Martinucci - Baldieri - Bar Caylè - Silvio Palma</i>
+        </p>
       </div>
     </div>
   </section>
@@ -49,6 +31,7 @@
 <script>
 import { auth } from "../assets/js/firebase";
 import router from "../router";
+import theCard from "@/components/TheCard.vue";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -69,6 +52,9 @@ export default {
     buttonText() {
       return this.isUserLogged ? "Mostra la card" : "Iscriviti ora";
     },
+  },
+  components: {
+    theCard,
   },
 };
 </script>
