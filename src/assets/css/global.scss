@@ -1,176 +1,186 @@
-$light-white: rgba(255,255,255, 0.7);
-$light-background: #48585C;
-$background: #283B3F;
-$red: #EF6461;
-$green: #1DD25E;
+$light-white: rgba(255, 255, 255, 0.7);
+$light-background: #48585c;
+$background: #283b3f;
+$red: #ef6461;
+$green: #1dd25e;
 body {
-    background-color: #283B3F;
+  background-color: #283b3f;
 }
 
-h1, h2, h3, a, label, code {
-    color: white;
+h1,
+h2,
+h3,
+a,
+label,
+code {
+  color: white;
 }
-h1, h3 {
-    font-family: 'Darker Grotesque', sans-serif;
+h1,
+h3 {
+  font-family: "Darker Grotesque", sans-serif;
 }
 h5 {
-    color: #8DB5B1;
-    font-weight: 400;
+  color: #8db5b1;
+  font-weight: 400;
 }
 h1 {
-    font-weight: 800 !important;
-    /* Stretch font */
+  font-weight: 800 !important;
+  /* Stretch font */
 }
-h2, h5 p, a {
-    font-family: 'Raleway', sans-serif;
+h2,
+h5 p,
+a {
+  font-family: "Raleway", sans-serif;
 }
 h2 {
-    color: #8DB5B1;
+  color: #8db5b1;
 }
 h3 {
-    font-weight: 800 !important;
-
+  font-weight: 800 !important;
 }
 a {
-    font-weight: 600 !important;
+  font-weight: 600 !important;
 }
-p, .light {
-    color: $light-white;
+p,
+.light {
+  color: $light-white;
 }
 label {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .bg-home {
-    background-repeat:no-repeat; 
-    background-position-x: right;
-    background-image: url('../img/home-single-card-bg.png');
-    background-size: 65vw;
-    background-position-y: 100px;
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-image: url("../img/home-single-card-bg.png");
+  background-size: 65vw;
+  background-position-y: 100px;
 }
 
 @media (max-width: 576px) {
-    .bg-home {
-        background-size: 380px;
-    }
-    .img-home-card {
-        /*width: 120vw;*/
-        margin-left: -12vw;
-    }
+  .bg-home {
+    background-size: 380px;
+  }
+  .img-home-card {
+    /*width: 120vw;*/
+    margin-left: -12vw;
+  }
 }
 @media (min-width: 576px) {
-    .bg-home {
-        background-size: 380px;
-    }
+  .bg-home {
+    background-size: 380px;
+  }
 }
 @media (min-width: 768px) {
-    .scene {
-        height: calc(100vh - 79px);
-        display: flex;
-    }
-    .bg-home {        
-        background-size: 500px;
-        background-position-y: center;
-    }
+  .scene {
+    height: calc(100vh - 79px);
+    display: flex;
+  }
+  .bg-home {
+    background-size: 500px;
+    background-position-y: calc(100vh - 85vh);
+  }
 }
 @media (min-width: 992px) {
-    .bg-home {
-        background-image: url('../img/home-background-cards.svg');
-        background-size: 400px;
-    }
+  .bg-home {
+    background-image: url("../img/home-background-cards.svg");
+    background-size: 400px;
+  }
 }
 @media (min-width: 1200px) {
-    .bg-home {
-        background-size: 700px;
-        background-position-x: calc(100vw - 35vw);
-    }
+  .bg-home {
+    background-size: 700px;
+    background-position-x: calc(100vw - 35vw);
+  }
 }
 
 .glow {
-    -moz-box-shadow: 0 0 5px #fff;
-    -webkit-box-shadow: 0 0 5px #fff;
-    box-shadow: 0px 0px 500px #fff;
+  -moz-box-shadow: 0 0 5px #fff;
+  -webkit-box-shadow: 0 0 5px #fff;
+  box-shadow: 0px 0px 500px #fff;
 }
 
 .btn-light-grey {
-    background-color: #48585C;
-    color: white;
+  background-color: #48585c;
+  color: white;
 }
 
 .btn {
-    border-radius: .45rem;
+  border-radius: 0.45rem;
 }
 .btn-large {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .btn-big-height {
-    min-height: calc(2em + .75rem + 2px);
+  min-height: calc(2em + 0.75rem + 2px);
 }
 .form-control {
-    background-color: transparent;
-    min-height: calc(2em + .75rem + 2px);
-    border-radius: .45rem;
-    border: 1px solid $light-white;
-    outline: 0;
+  background-color: transparent;
+  min-height: calc(2em + 0.75rem + 2px);
+  border-radius: 0.45rem;
+  border: 1px solid $light-white;
+  outline: 0;
+  color: white;
 }
 .form-control:focus {
-    background-color: $light-background;
-    box-shadow: none;
-    border-color: $light-white;
+  box-shadow: none !important;
+  border-color: white;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 .form-check-input {
-    outline: 0;
+  outline: 0;
 }
 
 /* --- CARD --- */
 
 .card-container {
-    max-width: 450px;
-    height: 240px;
+  max-width: 450px;
+  height: 240px;
 }
 
-.card {    
-    width: 100%;
-    height: 100%;
-    background-color: $background;
-    border-radius: .75rem;
-    padding: 2rem;
-    background-image: url('../img/card/card-illustration-lc.svg');
-    background-repeat: no-repeat;
-    background-position: right;
-    box-shadow: 0 0 40px 5px rgba(255,255,255, 0.05);
-    border: none;
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: $background;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  background-image: url("../img/card/card-illustration-lc_1.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+  box-shadow: 0 0 40px 5px rgba(255, 255, 255, 0.05);
+  border: none;
 }
 .card-width {
-    max-width: 450px;
+  max-width: 450px;
 }
 .card-h1 {
-    line-height: 1 !important;
+  line-height: 1 !important;
 }
 .card-code {
-    font-size: .75rem;
-    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    line-height: .9;
+  font-size: 0.75rem;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  line-height: 0.9;
 }
 @media (max-width: 576px) {
-    .card-h1 {
-        font-size: 3rem;
-    }
+  .card-h1 {
+    font-size: 3rem;
+  }
 }
 .card-small-code {
-    font-size: .45rem;
+  font-size: 0.45rem;
 }
 
 .message {
-    width: fit-content;
-    width: intrinsic;           /* Safari/WebKit uses a non-standard name */
-    width: -moz-max-content;    /* Firefox/Gecko */
-    border-radius: .75rem;
+  width: fit-content;
+  width: intrinsic; /* Safari/WebKit uses a non-standard name */
+  width: -moz-max-content; /* Firefox/Gecko */
+  border-radius: 0.75rem;
 }
 .error-message {
-    background-color: $red;    
+  background-color: $red;
 }
 .success-message {
-    background-color: $green; 
+  background-color: $green;
 }
