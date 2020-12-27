@@ -3,8 +3,7 @@
     <div class="container mt-2">
       <!-- Brand -->
       <router-link class="navbar-brand" to="/">
-        De Giorgi's Card
-        <img src="@/assets/img/logoLicea.png" width="40" height="40" />
+        <h3>De Giorgi's Card</h3>
       </router-link>
 
       <div>
