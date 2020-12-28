@@ -2,9 +2,11 @@
   <section class="scene">
     <div class="container my-auto">
       <div class="row">
-        <div class="col-12 col-lg-6 order-lg-2 my-auto d-grid">
-          <img class="" src="@/assets/img/home-card_1.svg" alt="card" />
-          <h1 class="display-3 text-center ">Accedi come esercente</h1>
+        <div class="col-12 col-lg-6 order-lg-2 my-auto mt-5">
+          <theCard />
+          <h1 class="display-3 text-center mt-5">
+            Accedi come esercente
+          </h1>
           <form>
             <div class="form-group">
               <input
@@ -36,12 +38,11 @@
           </button>
         </div>
         <div class="col-12 col-lg-6 my-auto mt-5 my-lg-auto order-2">
-          <h2 class="text-uppercase text-right mb-0">Controlla le</h2>
+          <h2 class="text-uppercase text-right mb-0">Valida le</h2>
           <h1 class="display-3 text-right">De Giorgi's Card</h1>
           <p class="lead text-right">
-            Accedi da subito a tutti i vantaggi dedicati agli studenti del Liceo
-            Cosimo De Giorgi di Lecce. Registrati subito per usufruire delle
-            numerose promozioni messe a disposizione degli utenti del liceo.
+            Sei un esercente? Accedi al pannello di gestione per validare le
+            card che vengon utilizzate presso il tuo negozio.
           </p>
         </div>
       </div>
@@ -52,6 +53,7 @@
 <script>
 //<img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
 import { auth } from "../assets/js/firebase";
+import TheCard from "@/components/TheCard.vue";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -75,13 +77,16 @@ export default {
       console.log(this.email, this.password);
       auth
         .signInWithEmailAndPassword(this.email, this.password)
-        .then((user) => {
-          console.log(user);
+        .then((res) => {
+          console.log(res);
         })
         .catch((err) => {
           console.log(err);
         });
     },
+  },
+  components: {
+    TheCard,
   },
 };
 </script>
