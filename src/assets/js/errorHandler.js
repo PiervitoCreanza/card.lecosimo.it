@@ -31,6 +31,7 @@ export const formatError = (errorCode) => {
 
   return {
     isError: true,
+    code: errorCode,
     message: errorMessages[errorCode],
   };
 };
