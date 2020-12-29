@@ -59,7 +59,7 @@
 
             <button
               @click="redirectToScan"
-              class="btn btn-large btn-light shadow text-center mt-4"
+              class="btn btn-large btn-light shadow text-center mt-lg-4"
             >
               Scansiona un'altra carta
             </button>
@@ -78,6 +78,7 @@ export default {
   created() {
     auth.onAuthStateChanged((user) => {
       if (!user) {
+        console.log("user not authenticated");
         return (this.error = formatError("permission-denied"));
       }
 
@@ -97,6 +98,7 @@ export default {
             displayName: data.displayName,
             lastScan:
               data.lastScan &&
+              data.lastScan[user.uid] &&
               data.lastScan[user.uid]
                 .toDate()
                 .toISOString()
@@ -108,9 +110,13 @@ export default {
               lastScan: {
                 [user.uid]: new Date(),
               },
+            })
+            .catch((err) => {
+              console.log("err updating doc", err);
             });
         })
         .catch((err) => {
+          console.log(err);
           this.error = formatError(err.code);
         });
     });
@@ -135,7 +141,11 @@ export default {
   },
   methods: {
     signIn() {
-      router.push("/esercenti");
+      console.log(router.currentRoute.value.fullPath);
+      router.push({
+        path: "/esercenti",
+        query: { redirect: router.currentRoute.value.fullPath },
+      });
     },
     redirectToScan() {
       router.push("/home-esercenti");
