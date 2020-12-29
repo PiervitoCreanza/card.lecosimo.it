@@ -4,22 +4,12 @@ import router from "./router";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/global.scss";
-import { auth } from "./assets/js/firebase";
+import { store } from "./store";
 
-createApp(App)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
 
-router.beforeEach(async (to, from, next) => {
-  const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
-  if (requiresAuth && !(await auth.getCurrentUser())) {
-    next({ path: "/login", query: { redirect: to.fullPath } });
-  } else {
-    next();
-  }
-});
-
-router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} - De Giorgi's Card` || "De Giorgi's Card";
-  next();
-});
+// Install the store instance as a plugin
+app.config.devtools = true;
+app.use(router);
+app.use(store);
+app.mount("#app");
