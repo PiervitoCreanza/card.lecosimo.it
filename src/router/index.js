@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { store } from "@/store";
 const Home = () => import("../views/Home.vue");
 const Login = () => import("../views/Login.vue");
 const UserHome = () => import("../views/UserHome.vue");
@@ -17,7 +18,7 @@ const routes = [
   },
   {
     path: "/user",
-    name: "User",
+    name: "UserHome",
     component: UserHome,
     meta: {
       requiresAuth: true,
@@ -34,7 +35,7 @@ const routes = [
   },
   {
     path: "/viewcard/:id",
-    name: "Visualizza Carta",
+    name: "ViewCard",
     component: ViewCard,
     meta: {
       /*requiresAuth: true,*/
@@ -47,6 +48,7 @@ const routes = [
   },
   {
     path: "/home-esercenti",
+    name: "RetailerHome",
     component: HomeEsercenti,
   },
 ];
@@ -57,3 +59,31 @@ const router = createRouter({
 });
 
 export default router;
+
+router.beforeEach(async (to, from, next) => {
+  const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
+  if (requiresAuth && !store.getters.isUserAuth) {
+    next({ path: "/login", query: { redirect: to.fullPath } });
+  } else {
+    next();
+  }
+});
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+    ? `${to.meta.title} - De Giorgi's Card`
+    : "De Giorgi's Card";
+  next();
+});
+/*
+router.afterEach((to, from, next) => {
+  const redirectWhenLoggedIn = to.matched.some(
+    (x) => x.meta.redirectWhenLoggedIn
+  );
+  if (redirectWhenLoggedIn && store.getters.isUserAuth) {
+    console.log(store.getters.isUserRetailer);
+    next({ name: store.getters.isUserRetailer ? "/UserHome" : "RetailerHome" });
+  } else {
+    next();
+  }
+});*/
