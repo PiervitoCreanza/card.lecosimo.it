@@ -19,46 +19,34 @@
 </template>
 
 <script>
-import { auth, firebase } from "../assets/js/firebase";
 import router from "../router";
-import { googleSignIn } from "../assets/js/signIn";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  created() {
-    auth.onAuthStateChanged((user) => {
-      this.isUserLogged = user ? true : false;
-    });
-  },
-  data() {
-    return {
-      isUserLogged: false,
-    };
-  },
   methods: {
+    ...mapActions(["signInWithGoogleAction", "signOutAction"]),
     onButton2Click() {
-      if (this.isUserLogged) {
-        firebase
-          .auth()
-          .signOut()
-          .then(() => {
-            router.push("/");
-          });
+      if (this.isUserAuth) {
+        this.signOutAction();
       } else {
         router.push("/login");
       }
     },
     onButton1Click() {
-      this.isUserLogged ? router.push("/user") : googleSignIn(this.$route);
+      this.isUserAuth
+        ? router.push("/user")
+        : this.signInWithGoogleAction(this.$route);
     },
   },
   computed: {
+    ...mapGetters(["getUser", "isUserAuth"]),
     buttonMessage1() {
-      return this.isUserLogged ? "La mia card" : "Accedi";
+      return this.isUserAuth ? "La mia card" : "Accedi";
     },
     button1Href() {
-      return this.isUserLogged ? "/user" : "/login";
+      return this.isUserAuth ? "/user" : "/login";
     },
     buttonMessage2() {
-      return this.isUserLogged ? "Esci" : "Registrati";
+      return this.isUserAuth ? "Esci" : "Registrati";
     },
   },
 };
