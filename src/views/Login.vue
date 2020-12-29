@@ -29,7 +29,7 @@
 
 <script>
 import { auth } from "../assets/js/firebase";
-import { googleSignIn } from "../assets/js/signIn";
+import { mapActions } from "vuex";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -49,8 +49,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["signInWithGoogleAction"]),
     signIn() {
-      googleSignIn(this.$route);
+      this.signInWithGoogleAction();
     },
   },
 };

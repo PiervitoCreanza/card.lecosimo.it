@@ -54,6 +54,7 @@
 //<img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
 import { auth } from "../assets/js/firebase";
 import TheCard from "@/components/TheCard.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -68,21 +69,16 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(["getUser", "isUserAuth"]),
     buttonMessage() {
-      return this.isUserLogged ? "Mostra la card" : "Accedi come esercente";
+      console.log(this.isUserAuth);
+      return this.isUserAuth ? "Mostra la card" : "Accedi come esercente";
     },
   },
   methods: {
+    ...mapActions(["signInAction"]),
     signIn() {
-      console.log(this.email, this.password);
-      auth
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this.signInAction({ email: this.email, password: this.password });
     },
   },
   components: {
