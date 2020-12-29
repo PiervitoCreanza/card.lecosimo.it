@@ -6,8 +6,15 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Navigation from "./components/Navigation.vue";
 export default {
+  mounted() {
+    this.authAction();
+  },
+  methods: {
+    ...mapActions(["authAction"]),
+  },
   components: {
     Navigation,
   },
