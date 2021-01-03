@@ -22,8 +22,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
-# Firebase config
-firebase.js
-
 # Firebase hosting cache
 /.firebase
