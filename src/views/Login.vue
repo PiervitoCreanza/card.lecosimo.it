@@ -30,6 +30,7 @@
 <script>
 import { auth } from "../assets/js/firebase";
 import { mapActions } from "vuex";
+import router from "../router";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -51,6 +52,9 @@ export default {
   methods: {
     ...mapActions(["signInWithGoogleAction"]),
     signIn() {
+      if (this.isUserLogged) {
+        return router.push({ name: "UserHome" });
+      }
       this.signInWithGoogleAction();
     },
   },
