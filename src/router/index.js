@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import { store } from "@/store";
 const Home = () => import("../views/Home.vue");
 const Login = () => import("../views/Login.vue");
-const UserHome = () => import("../views/UserHome.vue");
+const HomeUser = () => import("../views/HomeUser.vue");
 const ViewCard = () => import("../views/ViewCard.vue");
 const Esercenti = () => import("@/views/Esercenti.vue");
 const HomeEsercenti = () => import("@/views/HomeEsercenti.vue");
@@ -19,7 +19,7 @@ const routes = [
   {
     path: "/user",
     name: "UserHome",
-    component: UserHome,
+    component: HomeUser,
     meta: {
       requiresAuth: true,
       title: "Dashboard",
