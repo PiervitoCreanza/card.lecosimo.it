@@ -21,7 +21,10 @@
         <h5>Resa possibile grazie a</h5>
         <img src="@/assets/img/sponsors@2x.png" height="100" />
         <p class="mt-2">
-          <i>Rooster - Martinucci - Baldieri - Bar Caylè - Silvio Palma</i>
+          <i
+            >Rooster - Martinucci - Baldieri - Bar Caylè - Silvio Palma - Punto
+            di Vista
+          </i>
         </p>
       </div>
     </div>
