@@ -1,5 +1,5 @@
 <template>
-  <section class="scene mt-5 mt-md-0">
+  <section class="scene mt-3 mt-md-0">
     <div class="container my-auto align-items-center align-middle">
       <div class="row">
         <div v-if="isQRShown" class="col-12 col-lg-7" style="height: 302px;">

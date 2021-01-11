@@ -1,5 +1,5 @@
 <template>
-  <section class="scene bg-home mt-5 mt-md-0">
+  <section class="scene bg-home mt-3 mt-md-0">
     <div class="container my-auto align-items-center align-middle">
       <div class="row">
         <div class="col-12 col-lg-6 my-lg-auto order-lg-2">
@@ -17,7 +17,7 @@
           >
         </div>
       </div>
-      <div class="mt-5 mt-md-7">
+      <div class="mt-4 mt-md-7">
         <h5>Resa possibile grazie a</h5>
         <img src="@/assets/img/sponsors@2x.png" height="100" />
         <p class="mt-2">

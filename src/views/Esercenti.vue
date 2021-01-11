@@ -2,7 +2,7 @@
   <section class="scene">
     <div class="container my-auto">
       <div class="row">
-        <div class="col-12 col-lg-6 order-lg-2 my-auto mt-5">
+        <div class="col-12 col-lg-6 order-lg-2 my-auto mt-3">
           <theCard />
           <h1 class="display-3 text-center mt-5">
             Accedi come esercente
