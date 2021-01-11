@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-12 col-lg-6 order-lg-2 my-auto mt-3">
           <theCard />
-          <h1 class="display-3 text-center mt-5">
+          <h1 class="display-3 text-center mt-3 mt-md-5">
             Accedi come esercente
           </h1>
           <form>
