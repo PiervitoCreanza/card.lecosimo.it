@@ -17,7 +17,7 @@
           >
         </div>
       </div>
-      <div class="mt-5" style="margin-top: 7rem !important">
+      <div class="mt-5 mt-md-7">
         <h5>Resa possibile grazie a</h5>
         <img src="@/assets/img/sponsors@2x.png" height="100" />
         <p class="mt-2">
