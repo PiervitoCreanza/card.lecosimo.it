@@ -78,10 +78,10 @@ const actions = {
           )
         ) {
           return;
-        } /*
+        }
         router.push({
           name: isTokenResult.claims.isRetailer ? "RetailerHome" : "UserHome",
-        });*/
+        });
       });
     });
   },
