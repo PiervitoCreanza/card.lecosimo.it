@@ -2,9 +2,11 @@
   <section class="scene">
     <div class="container my-auto">
       <div class="row">
-        <div class="col-12 col-lg-6 order-lg-2 my-auto">
-          <img class="" src="@/assets/img/home-card_1.svg" alt="card" />
-          <h1 class="display-3 text-center">Accedi o Registrati</h1>
+        <div class="col-12 col-lg-6 order-lg-2 my-auto mt-3 mt-md-0">
+          <theCard />
+          <h1 class="display-3 text-center mt-3 mt-md-5">
+            Accedi o Registrati
+          </h1>
           <button
             type="submit"
             @click="signIn"
@@ -31,6 +33,7 @@
 import { auth } from "../assets/js/firebase";
 import { mapActions } from "vuex";
 import router from "../router";
+import theCard from "@/components/TheCard.vue";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -57,6 +60,9 @@ export default {
       }
       this.signInWithGoogleAction();
     },
+  },
+  components: {
+    theCard,
   },
 };
 </script>
