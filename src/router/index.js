@@ -44,6 +44,7 @@ const routes = [
   },
   {
     path: "/esercenti",
+    name: "Esercenti",
     component: Esercenti,
   },
   {

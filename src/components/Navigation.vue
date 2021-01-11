@@ -28,7 +28,7 @@ export default {
       if (this.isUserAuth) {
         this.signOutAction();
       } else {
-        router.push("/login");
+        router.push({ name: "Esercenti" });
       }
     },
     onButton1Click() {
@@ -46,7 +46,7 @@ export default {
       return this.isUserAuth ? "/user" : "/login";
     },
     buttonMessage2() {
-      return this.isUserAuth ? "Esci" : "Registrati";
+      return this.isUserAuth ? "Esci" : "Esercenti";
     },
   },
 };
