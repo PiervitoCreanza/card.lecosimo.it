@@ -21,15 +21,6 @@ firebase.analytics();
 const db = firebase.firestore();
 const auth = firebase.auth();
 
-// Method for path guard
-auth.getCurrentUser = () => {
-  return new Promise((resolve, reject) => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      unsubscribe();
-      resolve(user);
-    }, reject);
-  });
-};
 /* Decomment after March 2021
 firebase.auth().getRedirectResult().then((result)=> {
     if (result.user) {
