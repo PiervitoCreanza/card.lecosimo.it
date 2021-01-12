@@ -12,5 +12,5 @@ export const store = createStore({
   mutations: mutations,
   actions: actions,
   getters: getters,
-  plugins: [process.env.NODE_ENV !== "production" && createLogger()],
+  plugins: [createLogger()],
 });
