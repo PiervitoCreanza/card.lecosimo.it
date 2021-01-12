@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Firebase hosting cache
 /.firebase
+
+# Dev images
+_dev_img/
