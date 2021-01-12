@@ -11,6 +11,9 @@ const getters = {
   isUserRetailer(state) {
     return state.user.isRetailer;
   },
+  isAuthLoading(state) {
+    return state.isAuthLoading;
+  },
 };
 
 export default getters;

@@ -6,6 +6,10 @@ const mutations = {
   setError(state, payload) {
     state.error = payload;
   },
+
+  setAuthLoading(state, payload) {
+    state.isAuthLoading = payload;
+  },
 };
 
 export default mutations;

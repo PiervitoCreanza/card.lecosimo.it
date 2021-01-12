@@ -21,13 +21,19 @@ const actions = {
       });
   },
   signInAction({ commit }, payload) {
+    commit("setAuthLoading", true);
     auth
       .signInWithEmailAndPassword(payload.email, payload.password)
+      .then(() => {
+        router.push({ name: "RetailerHome" });
+      })
       .catch((error) => {
         commit("setError", error.message);
+        commit("setAuthLoading", false);
       });
   },
   signInWithGoogleAction({ commit }) {
+    commit("setAuthLoading", true);
     const provider = new firebase.auth.GoogleAuthProvider();
 
     if (window.matchMedia("only screen and (max-width: 760px)").matches) {
@@ -35,11 +41,13 @@ const actions = {
       auth.signInWithRedirect(provider);
       return auth.getRedirectResult().catch((error) => {
         commit("setError", error.message);
+        commit("setAuthLoading", false);
       });
     }
 
     return auth.signInWithPopup(provider).catch((error) => {
       commit("setError", error.message);
+      commit("setAuthLoading", false);
     });
   },
   signOutAction({ commit }) {
@@ -57,6 +65,8 @@ const actions = {
   },
   authAction({ commit }) {
     auth.onAuthStateChanged((user) => {
+      commit("setAuthLoading", false);
+      console.log("%c Auth completed", "background: #222; color: #bada55");
       if (!user) {
         return commit("setUser", null);
       }
@@ -78,10 +88,10 @@ const actions = {
           )
         ) {
           return;
-        }
+        } /*
         router.push({
           name: isTokenResult.claims.isRetailer ? "RetailerHome" : "UserHome",
-        });
+        });*/
       });
     });
   },
