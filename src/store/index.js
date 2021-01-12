@@ -4,7 +4,7 @@ import actions from "./actions";
 import getters from "./getters";
 
 const initialState = () => {
-  return { user: null, error: null };
+  return { user: null, error: null, isLoading: false };
 };
 
 export const store = createStore({
@@ -12,5 +12,5 @@ export const store = createStore({
   mutations: mutations,
   actions: actions,
   getters: getters,
-  plugins: [createLogger()],
+  plugins: [process.env.NODE_ENV !== "production" && createLogger()],
 });
