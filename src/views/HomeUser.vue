@@ -2,8 +2,8 @@
   <section class="scene mt-3 mt-md-0">
     <div class="container my-auto align-items-center align-middle">
       <div class="row">
-        <div v-if="isQRShown" class="col-12 col-lg-7" style="height: 302px;">
-          <vue-qrcode v-if="this.url" :value="this.url" />
+        <div v-if="isQRShown" class="col-12 col-lg-7">
+          <vue-qrcode v-if="this.url" :value="this.url" :width="180" />
           <h1 class="mt-3">Inquadra per scansionare</h1>
           <button
             type="submit"
