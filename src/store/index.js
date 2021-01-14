@@ -4,7 +4,12 @@ import actions from "./actions";
 import getters from "./getters";
 
 const initialState = () => {
-  return { user: null, error: null, isLoading: false };
+  return {
+    user: null,
+    error: null,
+    isLoading: false,
+    authError: { code: null, message: null },
+  };
 };
 
 const debug = process.env.NODE_ENV !== "production";
