@@ -3,7 +3,7 @@
     <div class="container my-auto align-items-center align-middle">
       <div class="row">
         <div v-if="isQRShown" class="col-12 col-lg-7">
-          <vue-qrcode v-if="this.url" :value="this.url" :width="180" />
+          <vue-qrcode v-if="this.url" :value="this.url" :width="189" />
           <h1 class="mt-3">Inquadra per scansionare</h1>
           <button
             type="submit"
