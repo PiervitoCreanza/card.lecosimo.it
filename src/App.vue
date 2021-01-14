@@ -7,6 +7,7 @@
     <LoadingScreen
       :loadingText="isAuthLoading && 'Accesso in corso'"
       v-if="isAuthLoading"
+      :fullWidth="true"
     />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <div class="center" style="height: 100vh;">
+  <div class="center" :style="fullWidth && 'height: 100vh;'">
     <div class="container">
       <div class="loader triangle">
         <svg viewBox="0 0 86 80">
@@ -17,6 +17,10 @@ export default {
     loadingText: {
       type: String,
       default: "Caricamento",
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
