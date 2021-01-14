@@ -7,12 +7,13 @@
           <h1 class="display-3 text-center mt-3 mt-md-5">
             Accedi come esercente
           </h1>
-          <form>
+          <form @submit.prevent="signIn">
             <div class="form-group">
               <input
-                type="email"
+                type="emaila"
                 class="form-control"
-                id="exampleInputEmail1"
+                :class="isEmailError"
+                @focus="clearError"
                 aria-describedby="emailHelp"
                 placeholder="Inserisci la tua email"
                 v-model="email"
@@ -22,20 +23,19 @@
               <input
                 type="password"
                 class="form-control"
-                id="exampleInputPassword1"
+                :class="isPasswordError"
+                @focus="clearError"
                 placeholder="Password"
                 v-model="password"
               />
             </div>
+            <button
+              type="submit"
+              class="btn btn-large btn-light shadow text-center btn-block btn-big-height mt-3"
+            >
+              {{ buttonMessage }}
+            </button>
           </form>
-
-          <button
-            type="submit"
-            @click="signIn"
-            class="btn btn-large btn-light shadow text-center btn-block btn-big-height mt-3"
-          >
-            {{ buttonMessage }}
-          </button>
         </div>
         <div class="col-12 col-lg-6 my-auto mt-5 my-lg-auto order-2">
           <h2 class="text-uppercase text-right mb-0">Valida le</h2>
@@ -54,7 +54,7 @@
 //<img class="firebaseui-idp-icon" alt="" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
 import { auth } from "../assets/js/firebase";
 import TheCard from "@/components/TheCard.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapActions, mapGetters, mapState } from "vuex";
 export default {
   created() {
     auth.onAuthStateChanged((user) => {
@@ -66,17 +66,34 @@ export default {
       isUserLogged: false,
       email: "",
       password: "",
+      isError: false,
     };
   },
   computed: {
     ...mapGetters(["getUser", "isUserAuth"]),
+    ...mapState(["authError"]),
     buttonMessage() {
-      console.log(this.isUserAuth);
       return this.isUserAuth ? "Mostra la card" : "Accedi come esercente";
+    },
+
+    isEmailError() {
+      if (
+        this.authError.code === "auth/user-not-found" ||
+        this.authError.code === "auth/invalid-email"
+      ) {
+        return "error";
+      }
+      return "";
+    },
+    isPasswordError() {
+      if (this.authError.code === "auth/wrong-password") {
+        return "error";
+      }
+      return "";
     },
   },
   methods: {
-    ...mapActions(["signInAction"]),
+    ...mapActions(["signInAction", "clearAuthError"]),
     signIn() {
       this.signInAction({ email: this.email, password: this.password });
     },
