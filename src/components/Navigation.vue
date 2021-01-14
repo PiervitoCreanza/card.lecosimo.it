@@ -28,22 +28,29 @@ export default {
       if (this.isUserAuth) {
         this.signOutAction();
       } else {
-        router.push({ name: "Esercenti" });
+        router.push({ name: "LoginEsercenti" });
       }
     },
     onButton1Click() {
-      this.isUserAuth
-        ? router.push("/user")
-        : this.signInWithGoogleAction(this.$route);
+      if (!this.isUserAuth) {
+        return this.signInWithGoogleAction(this.$route);
+      }
+      if (this.isUserRetailer) {
+        return router.push({ name: "Home" });
+      }
+      return router.push({ name: "UserHome" });
     },
   },
   computed: {
-    ...mapGetters(["getUser", "isUserAuth"]),
+    ...mapGetters(["getUser", "isUserAuth", "isUserRetailer"]),
     buttonMessage1() {
-      return this.isUserAuth ? "La mia card" : "Accedi";
-    },
-    button1Href() {
-      return this.isUserAuth ? "/user" : "/login";
+      if (!this.isUserAuth) {
+        return "Accedi";
+      }
+      if (this.isUserRetailer) {
+        return "Home";
+      }
+      return "La mia card";
     },
     buttonMessage2() {
       return this.isUserAuth ? "Esci" : "Esercenti";
