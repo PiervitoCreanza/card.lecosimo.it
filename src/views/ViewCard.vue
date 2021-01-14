@@ -143,7 +143,7 @@ export default {
     signIn() {
       console.log(router.currentRoute.value.fullPath);
       router.push({
-        path: "/esercenti",
+        name: "LoginEsercenti",
         query: { redirect: router.currentRoute.value.fullPath },
       });
     },
