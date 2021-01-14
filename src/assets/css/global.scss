@@ -124,13 +124,19 @@ label {
   border-radius: 0.45rem;
   border: 1px solid $light-white;
   outline: 0;
-  color: white;
+
+  &:focus {
+    box-shadow: none !important;
+    border-color: white;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+  }
+
+  &.error {
+    color: $red;
+  }
 }
-.form-control:focus {
-  box-shadow: none !important;
-  border-color: white;
-  background-color: rgba(255, 255, 255, 0.9);
-}
+
 .form-check-input {
   outline: 0;
 }
