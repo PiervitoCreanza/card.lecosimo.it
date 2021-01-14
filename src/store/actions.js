@@ -17,36 +17,37 @@ const actions = {
         commit("setUser", response.user);
       })
       .catch((error) => {
-        commit("setError", error.message);
+        commit("setAuthError", error.message);
       });
   },
   signInAction({ commit }, payload) {
-    commit("setAuthLoading", true);
+    //commit("setAuthLoading", true);
     auth
       .signInWithEmailAndPassword(payload.email, payload.password)
       .then(() => {
         router.push({ name: "RetailerHome" });
       })
       .catch((error) => {
-        commit("setError", error.message);
-        commit("setAuthLoading", false);
+        commit("setAuthError", error);
+        //commit("setAuthLoading", false);
       });
   },
   signInWithGoogleAction({ commit }) {
     commit("setAuthLoading", true);
+    commit("setComingFromLogin", true);
     const provider = new firebase.auth.GoogleAuthProvider();
 
     if (window.matchMedia("only screen and (max-width: 760px)").matches) {
       // Check if we are on a mobile device
       auth.signInWithRedirect(provider);
       return auth.getRedirectResult().catch((error) => {
-        commit("setError", error.message);
+        commit("setAuthError", error.message);
         commit("setAuthLoading", false);
       });
     }
 
     return auth.signInWithPopup(provider).catch((error) => {
-      commit("setError", error.message);
+      commit("setAuthError", error.message);
       commit("setAuthLoading", false);
     });
   },
@@ -60,10 +61,10 @@ const actions = {
       })
       .catch((error) => {
         console.log(error);
-        commit("setError", error.message);
+        commit("setAuthError", error.message);
       });
   },
-  authAction({ commit }) {
+  authAction({ commit, state }) {
     auth.onAuthStateChanged((user) => {
       commit("setAuthLoading", false);
       console.log("%c Auth completed", "background: #222; color: #bada55");
@@ -77,21 +78,16 @@ const actions = {
           isRetailer: !!isTokenResult.claims.isRetailer,
         });
 
-        // Redirect if on login page
+        // Redirect if necessary
         if (router.currentRoute.value.query.redirect) {
-          return router.push(router.currentRoute.value.query.redirect);
+          router.push(router.currentRoute.value.query.redirect);
+        } else if (state.comingFromLogin) {
+          router.push({
+            name: isTokenResult.claims.isRetailer ? "RetailerHome" : "UserHome",
+          });
         }
 
-        if (
-          ["ViewCard", "RetailerHome", "UserHome"].includes(
-            router.currentRoute.value.name
-          )
-        ) {
-          return;
-        } /*
-        router.push({
-          name: isTokenResult.claims.isRetailer ? "RetailerHome" : "UserHome",
-        });*/
+        commit("setComingFromLogin", false);
       });
     });
   },
