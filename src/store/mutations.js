@@ -3,8 +3,12 @@ const mutations = {
     state.user = payload;
   },
 
-  setError(state, payload) {
-    state.error = payload;
+  setAuthError(state, payload) {
+    state.authError = payload;
+  },
+
+  setComingFromLogin(state, payload) {
+    state.comingFromLogin = payload;
   },
 
   setAuthLoading(state, payload) {
