@@ -4,8 +4,9 @@ const Home = () => import("../views/Home.vue");
 const Login = () => import("../views/Login.vue");
 const HomeUser = () => import("../views/HomeUser.vue");
 const ViewCard = () => import("../views/ViewCard.vue");
-const Esercenti = () => import("@/views/Esercenti.vue");
+const LoginEsercenti = () => import("@/views/LoginEsercenti.vue");
 const HomeEsercenti = () => import("@/views/HomeEsercenti.vue");
+const Error404 = () => import("@/views/404.vue");
 
 const routes = [
   {
@@ -23,6 +24,7 @@ const routes = [
     meta: {
       requiresAuth: true,
       title: "Dashboard",
+      forbidRetailer: true,
     },
   },
   {
@@ -43,14 +45,31 @@ const routes = [
     },
   },
   {
-    path: "/esercenti",
-    name: "Esercenti",
-    component: Esercenti,
+    path: "/LoginEsercenti",
+    name: "LoginEsercenti",
+    component: LoginEsercenti,
+    meta: {
+      title: "Accedi",
+    },
   },
   {
     path: "/home-esercenti",
     name: "RetailerHome",
     component: HomeEsercenti,
+    meta: {
+      requiresAuth: true,
+      allowedRoles: ["retailer"],
+      title: "Dashboard",
+      forbidUser: true,
+    },
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: Error404,
+    meta: {
+      title: "Errore 404",
+    },
   },
 ];
 
@@ -70,21 +89,22 @@ router.beforeEach(async (to, from, next) => {
   }
 });
 
+router.beforeEach(async (to, from, next) => {
+  const forbidRetailer = to.matched.some((x) => x.meta.forbidRetailer);
+  const forbidUser = to.matched.some((x) => x.meta.forbidUser);
+  if (
+    (forbidRetailer && store.getters.isUserRetailer) ||
+    (forbidUser && !store.getters.isUserRetailer)
+  ) {
+    return next({ name: "404" });
+  } else {
+    next();
+  }
+});
+
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
     ? `${to.meta.title} - De Giorgi's Card`
     : "De Giorgi's Card";
   next();
 });
-/*
-router.afterEach((to, from, next) => {
-  const redirectWhenLoggedIn = to.matched.some(
-    (x) => x.meta.redirectWhenLoggedIn
-  );
-  if (redirectWhenLoggedIn && store.getters.isUserAuth) {
-    console.log(store.getters.isUserRetailer);
-    next({ name: store.getters.isUserRetailer ? "/UserHome" : "RetailerHome" });
-  } else {
-    next();
-  }
-});*/
