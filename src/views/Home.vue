@@ -32,28 +32,31 @@
 </template>
 
 <script>
-import { auth } from "../assets/js/firebase";
 import router from "../router";
 import theCard from "@/components/TheCard.vue";
+import { mapGetters } from "vuex";
 export default {
-  created() {
-    auth.onAuthStateChanged((user) => {
-      this.isUserLogged = user ? true : false;
-    });
-  },
-  data() {
-    return {
-      isUserLogged: false,
-    };
-  },
   methods: {
     homeButton() {
-      router.push(this.isUserLogged ? "/user" : "/login");
+      if (!this.isUserAuth) {
+        return router.push({ name: "Login" });
+      }
+      if (this.isUserRetailer) {
+        return router.push({ name: "RetailerHome" });
+      }
+      return router.push({ name: "UserHome" });
     },
   },
   computed: {
+    ...mapGetters(["isUserRetailer", "isUserAuth"]),
     buttonText() {
-      return this.isUserLogged ? "Mostra la card" : "Iscriviti ora";
+      if (!this.isUserAuth) {
+        return "Iscriviti ora";
+      }
+      if (this.isUserRetailer) {
+        return "Scansiona la card";
+      }
+      return "Mostra la card";
     },
   },
   components: {
