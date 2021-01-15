@@ -79,7 +79,7 @@ export default {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         console.log("user not authenticated");
-        return (this.error = formatError("permission-denied"));
+        //return (this.error = formatError("permission-denied"));
       }
 
       db.collection("users")
@@ -95,15 +95,16 @@ export default {
           this.card = {
             isLoaded: true,
             suspended: data.suspended,
-            displayName: data.displayName,
+            displayName:
+              data.displayName /*
             lastScan:
               data.lastScan &&
               data.lastScan[user.uid] &&
               data.lastScan[user.uid]
                 .toDate()
                 .toISOString()
-                .split("T")[0],
-          };
+                .split("T")[0],*/,
+          }; /*
           db.collection("users")
             .doc(data.uid)
             .update({
@@ -113,7 +114,7 @@ export default {
             })
             .catch((err) => {
               console.log("err updating doc", err);
-            });
+            });*/
         })
         .catch((err) => {
           console.log(err);
