@@ -45,8 +45,8 @@ export default {
   created() {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        //this.url = `${window.location.origin}/viewcard/${user.uid}`;
-        this.url = user.uid;
+        this.url = `${window.location.origin}/viewcard/${user.uid}`;
+        //this.url = user.uid;
         this.displayName = user.displayName;
         this.uid = user.uid.match(/.{1,4}/g).join(" ");
       }
