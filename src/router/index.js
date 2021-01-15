@@ -63,7 +63,7 @@ const routes = [
     },
   },
   {
-    path: "/404",
+    path: "/:catchAll(.*)",
     name: "404",
     component: Error404,
     meta: {
