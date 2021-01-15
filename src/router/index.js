@@ -58,7 +58,6 @@ const routes = [
     component: HomeEsercenti,
     meta: {
       requiresAuth: true,
-      allowedRoles: ["retailer"],
       title: "Dashboard",
       forbidUser: true,
     },
