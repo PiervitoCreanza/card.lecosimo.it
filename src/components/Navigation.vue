@@ -36,7 +36,7 @@ export default {
         return this.signInWithGoogleAction(this.$route);
       }
       if (this.isUserRetailer) {
-        return router.push({ name: "Home" });
+        return router.push({ name: "RetailerHome" });
       }
       return router.push({ name: "UserHome" });
     },
@@ -48,7 +48,7 @@ export default {
         return "Accedi";
       }
       if (this.isUserRetailer) {
-        return "Home";
+        return "Scansiona";
       }
       return "La mia card";
     },
