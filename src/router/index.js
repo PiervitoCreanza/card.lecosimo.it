@@ -7,6 +7,7 @@ const ViewCard = () => import("../views/ViewCard.vue");
 const LoginEsercenti = () => import("@/views/LoginEsercenti.vue");
 const HomeEsercenti = () => import("@/views/HomeEsercenti.vue");
 const Error404 = () => import("@/views/404.vue");
+const Faq = () => import("@/views/Faq.vue");
 
 const routes = [
   {
@@ -68,6 +69,14 @@ const routes = [
     component: Error404,
     meta: {
       title: "Errore 404",
+    },
+  },
+  {
+    path: "/faq",
+    name: "Faq",
+    component: Faq,
+    meta: {
+      title: "FAQ",
     },
   },
 ];
