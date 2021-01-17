@@ -53,7 +53,7 @@ export default {
     onDecode(decodedString) {
       if (decodedString) {
         router.push(
-          "/viewcard/" + decodedString.match(/(?<=viewcard\/)(.+)/)[0]
+          "/viewcard/" + decodedString.match(/(?:viewcard\/)(.+)/)[1]
         );
         this.isQrLoaded = false;
       }
