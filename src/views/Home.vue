@@ -23,7 +23,7 @@
         <p class="mt-2">
           <i
             >Rooster - Martinucci - Baldieri - Bar Caylè - Silvio Palma - Punto
-            di Vista
+            di Vista - Exploit
           </i>
         </p>
       </div>
