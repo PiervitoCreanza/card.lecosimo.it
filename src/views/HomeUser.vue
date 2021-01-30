@@ -55,7 +55,7 @@ export default {
   data() {
     return {
       url: false,
-      displayName: "Mario Rossi",
+      displayName: "Giorgio Rossi",
       isQRShown: false,
       uid: "8Cle Pnbm KUsM vXQc G3qg",
     };

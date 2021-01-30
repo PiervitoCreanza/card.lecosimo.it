@@ -35,7 +35,7 @@ export default {
 
     fullName: {
       type: String,
-      default: "Mario rossi",
+      default: "Giorgio Rossi",
     },
   },
 };
